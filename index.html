@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6f4ec"><meta name="description" content="一场可以带着自己出发的像素小冒险。导入完整角色动作图，成为像素旅人，收集星光，把信送往灯塔。">
+<title>星屿邮局 · 把星光寄给你</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ec795d'/%3E%3Cpath d='m32 10 6 14 16 2-12 11 3 17-13-8-14 8 3-17L10 26l16-2Z' fill='%23fff4cb'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="workshop.css"><link rel="stylesheet" href="victory.css">
+</head>
+<body>
+<div class="page">
+<header class="site-header"><a class="brand" href="#" aria-label="星屿邮局首页"><span class="brand-icon">✦</span><span>星屿邮局<small>STAR ISLAND POST</small></span></a><div class="header-right"><span class="privacy"><i></i>动作素材只在你的设备上处理</span><button class="icon-btn" id="soundBtn" aria-label="开启声音" title="开启声音">♫<span id="soundLabel">声音关</span></button><button class="icon-btn" id="helpBtn" aria-label="查看玩法">?<span>怎么玩</span></button></div></header>
+<main>
+<section class="heading"><div><div class="eyebrow">A LITTLE ADVENTURE, WITH YOU IN IT</div><h1>把星光，<span>寄给你。</span><i>✧</i></h1><p>一座小岛，一位旅伴。还有一个像素世界里的你。</p></div><div class="postmark" aria-hidden="true"><span>星屿出发</span><b>✦</b><span>WITH LOVE · 01</span></div></section>
+<section class="game-shell" aria-label="星屿邮局游戏">
+<div class="game-top"><div class="chapter-title"><span class="live-dot"></span><b id="levelName">01 / 微风草甸</b><span class="game-status" id="gameStatus">等一位旅人出发</span></div><div class="hud"><span class="star-counter">✦ <b id="starCount">0</b><small>/ <span id="starTotal">6</span></small></span><span id="hearts" aria-label="3颗心">♥ ♥ ♥</span><span class="time" id="time">00:00</span><button id="pauseBtn" class="mini-btn" aria-label="暂停游戏" title="暂停 · P">Ⅱ</button><button id="restartBtn" class="mini-btn" aria-label="重新开始本关" title="重新开始本关">↻</button></div></div>
+<div class="stage" id="stage"><canvas id="game" width="1120" height="520" tabindex="0" aria-label="像素冒险。左右方向键移动，空格跳跃，可二段跳，J键攻击，E键投递。"></canvas>
+<div class="intro" id="intro"><div class="intro-label"><span>✉</span> 一封写给你的星光来信</div><h2>有些美好，<br>要一起去发现。</h2><p>收集散落在小岛上的星星，<br>把温柔的光，送到远方的灯塔。</p><button class="primary" id="startBtn">开始这次冒险 <span>→</span></button><div class="intro-note">6 段旅途 · 50 颗星光 · 无需下载</div></div>
+<div class="scene-tag" id="sceneTag">WINDY MEADOW <span>✦</span> 25°C</div>
+<div class="mechanic-badge" id="mechanicBadge" hidden></div><div class="combat-hud" id="combatHud" hidden><span>击退 <b id="defeatCount">0 / 1</b></span><span class="combat-key">J 攻击</span></div>
+<div class="message" id="gameMessage" role="status" aria-live="polite"></div>
+<div class="mobile-controls" id="mobileControls"><div><button data-control="left" aria-label="向左移动">←</button><button data-control="right" aria-label="向右移动">→</button></div><div><button data-control="attack" class="attack-control" aria-label="攻击怪兽">⚔</button><button data-control="interact" aria-label="投递星光">✉</button><button data-control="jump" class="jump-control" aria-label="跳跃">↑</button></div></div>
+<div class="overlay" id="resultOverlay" hidden><div class="result-card"><div id="resultIcon" class="result-icon">✦</div><div class="eyebrow" id="resultEyebrow">A LITTLE LIGHT, A LONG WAY</div><h2 id="resultTitle">这一站，送达。</h2><p id="resultText"></p><div id="resultStats" class="result-stats"></div><button class="primary" id="continueBtn">前往下一座岛 →</button><button class="text-btn" id="homeBtn">回到出发地</button></div></div>
+</div>
+<div class="game-bottom"><span class="control-guide"><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 移动 <span class="separator"></span><kbd>SPACE</kbd> 跳跃 / 二段跳 <span class="separator"></span><kbd>J</kbd> 攻击 <span class="separator"></span><kbd>E</kbd> 投递 <span class="separator"></span><kbd>P</kbd> 暂停</span><span class="goal" id="mechanicLabel">练习跳跃 · 宽平台与短水隙</span></div>
+</section>
+<section class="characters"><div class="section-label"><div><span class="eyebrow">YOUR LITTLE TRAVELER</span><h2>谁来送这封信？</h2></div><p>点击旅人切换，点「编辑」可修改名字和每个动作。</p></div><div class="character-list" id="characterList"><div class="character-entry" id="herEntry"><button class="character selected" data-character="her" aria-pressed="true"><canvas width="80" height="80" id="herThumb"></canvas><span><b id="herName">小暖</b><small>把温柔装进口袋</small></span><i>✓</i></button><button class="edit-character" type="button" data-edit-character="her" aria-label="编辑角色">✎ 编辑</button></div><div class="character-entry" id="meEntry"><button class="character" data-character="me" aria-pressed="false"><canvas width="80" height="80" id="meThumb"></canvas><span><b id="meName">阿屿</b><small>和你一起去远方</small></span><i>✓</i></button><button class="edit-character" type="button" data-edit-character="me" aria-label="编辑角色">✎ 编辑</button></div><div class="character-entry" id="customEntry" hidden><button class="character custom-card" id="customCard" data-character="custom" aria-pressed="false" hidden><canvas width="80" height="80" id="customThumb"></canvas><span><b id="customName">我的像素小人</b><small id="customMeta">角色 1 · 自动攻击</small></span><i>✓</i></button><button class="edit-character" type="button" data-edit-character="custom" aria-label="编辑角色">✎ 编辑</button></div><div class="character-entry" id="customEntry2" hidden><button class="character custom-card" id="customCard2" data-character="custom2" aria-pressed="false" hidden><canvas width="80" height="80" id="customThumb2"></canvas><span><b id="customName2">我的像素小人 2</b><small id="customMeta2">角色 2 · 自动攻击</small></span><i>✓</i></button><button class="edit-character" type="button" data-edit-character="custom2" aria-label="编辑角色">✎ 编辑</button></div><button class="upload-card" id="uploadBtn"><span class="upload-icon">＋</span><span><b id="uploadLabel">新增自定义角色</b><small id="uploadHint">0 / 2 个角色 · 导入到空位</small></span><span class="upload-arrow">↗</span></button></div></section>
+<div class="route-caption"><span>六封信，六种挑战</span><small>完成上一关后解锁 · 已解锁关卡可直接重玩</small></div><div class="trip-row"><button class="trip-stop active" id="stop0"><span>01</span>微风草甸 <i>✦</i></button><button class="trip-stop " id="stop1"><span>02</span>潮汐栈桥 <i>✦</i></button><button class="trip-stop " id="stop2"><span>03</span>萤火森林 <i>✦</i></button><button class="trip-stop " id="stop3"><span>04</span>风鸣峡谷 <i>✦</i></button><button class="trip-stop " id="stop4"><span>05</span>失落钟庭 <i>✦</i></button><button class="trip-stop " id="stop5"><span>06</span>星夜灯塔 <i>✦</i></button><span class="best" id="bestRecord">每一步，都算数。</span></div>
+</main><footer><span>✦ 小小像素，大大世界。</span><span>Made with a little stardust <i>♡</i> PixelCouple</span></footer>
+</div>
+<dialog id="helpDialog" class="help-dialog"><button id="closeHelp" class="close-btn" aria-label="关闭玩法">×</button><div class="eyebrow">A GUIDE TO YOUR ADVENTURE</div><h2>慢慢走，星光在等你。</h2><ol><li><b>选择旅人</b> · 可用原作小人，也可导入待机、行走和跳跃动作图，保留完整像素原画，可同时保存两个自定义角色。</li><li><b>收集每关全部星光</b> · 左右移动，空格跳跃，再按一次可二段跳。手机用屏幕按钮。</li><li><b>击退巡逻怪兽</b> · J键或屏幕⚔按钮攻击，可长按连击。露芽怪需1次攻击，苔石怪需2次；碰到怪兽会扣心。</li><li><b>小心雨云和水面</b> · 碰到会损失一颗心，并返回附近的安全位置。</li><li><b>把星光寄出</b> · 抵达最右侧灯塔，收集齐后按 E 或屏幕信封按钮。</li></ol><p>共 6 关、50 颗星光。依次学会二段跳、搭乘移动平台、使用蘑菇弹跳台、应对阵风、快速通过坍塌石板。P 暂停，↻ 重玩。素材和进度只存在当前浏览器，离线也能玩。</p><button class="primary" id="helpOk">知道啦，出发！ →</button></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<dialog id="victoryDialog" class="victory-dialog" aria-labelledby="victoryTitle" aria-describedby="victoryText">
+<div class="victory-postcard">
+<div class="victory-kicker"><span>STAR ISLAND POST</span><span>✦ JOURNEY COMPLETE ✦</span></div>
+<div class="victory-medal" aria-hidden="true">✦</div>
+<h2 id="victoryTitle">胜利！星光全部送达。</h2>
+<p id="victoryText">六封信，六段旅途。谢谢你，把温柔送到了世界的尽头。</p>
+<canvas id="victoryArt" width="640" height="160" aria-label="旅人与灯塔的胜利纪念画"></canvas>
+<div class="victory-stats">
+<div><span>收集星光</span><strong id="victoryStars">50 / 50</strong><small>颗闪亮的心意</small></div>
+<div><span id="victoryTimeLabel">全程用时</span><strong id="victoryTime">00:00</strong><small id="victoryRecord">本次冒险已完成</small></div>
+<div><span>完成关卡</span><strong id="victoryLevels">6 / 6</strong><small id="victoryMode">完整旅程</small></div>
+</div>
+<div class="victory-route-label"><span>这一路，都有星光作证。</span><span>DELIVERY RECEIPT</span></div>
+<ol class="victory-stamps" id="victoryStamps" aria-label="各关投递记录"></ol>
+<p class="victory-signoff" id="victorySignoff">小小旅人，这次冒险因你而完整。</p>
+<div class="victory-actions"><button class="primary" id="victoryReplay" autofocus>再寄一封信 →</button><button id="victoryHome">回到出发地</button></div>
+<div class="victory-footnote" id="victoryFootnote">星光会留在这里，等你下一次出发。</div>
+</div>
+</dialog>
+<script src="assets-data.js"></script><script src="xiaozi-punch.js"></script><script src="sprite-workshop.js"></script><script src="levels.js"></script><script src="combat.js"></script><script src="game.js"></script>
+</body></html>
